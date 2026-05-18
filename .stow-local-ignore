@@ -1,0 +1,9 @@
+# Files and directories Stow should NOT symlink.
+# Stow treats this as a list of regex patterns, one per line.
+\.git
+\.gitignore
+README\.md
+install\.sh
+brew\.txt
+karabiner
+templates

@@ -1,0 +1,69 @@
+# Brewfile.linux — Linuxbrew formulae for the modern shell stack.
+#
+# Prerequisite: run `./install-linux.sh` first. It installs system apt
+# packages (build tools, curl, zsh, etc.) and bootstraps Linuxbrew if it
+# isn't already on the box.
+#
+# Usage (after install-linux.sh has run):
+#   brew bundle --file=Brewfile.linux
+#
+# Notes:
+#   * Linuxbrew does NOT support `cask` (no GUI apps, no fonts via brew).
+#     Install fonts at the OS level (e.g. apt or download from Nerd Fonts).
+#   * Some tools (gh, git-lfs) are equally well installed via apt — feel
+#     free to drop them here if you'd rather get them from your distro.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Modern shell stack (drives the .zshrc)
+# ──────────────────────────────────────────────────────────────────────────────
+brew "stow"            # symlink manager
+brew "starship"        # prompt
+brew "atuin"           # SQLite shell history with full-text search
+brew "zoxide"          # smarter `cd` (z foo)
+brew "eza"             # modern `ls`
+brew "fzf"             # fuzzy finder
+brew "fnm"             # node version manager
+
+# ──────────────────────────────────────────────────────────────────────────────
+# CLI essentials
+# ──────────────────────────────────────────────────────────────────────────────
+brew "gh"              # GitHub CLI
+brew "ripgrep"
+brew "fd"
+brew "bat"
+brew "jq"
+brew "direnv"
+brew "mise"            # runtime version manager
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Editor / log viewer
+# ──────────────────────────────────────────────────────────────────────────────
+brew "neovim"
+brew "lnav"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 1Password CLI (used by templates/render.sh)
+# ──────────────────────────────────────────────────────────────────────────────
+# Linuxbrew supports `op` via tap:
+brew "1password-cli"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Optional — uncomment what you need on this server
+# ──────────────────────────────────────────────────────────────────────────────
+
+# ── Cloud / infra ────────────────────────────────────────────────────────────
+# brew "hashicorp/tap/terraform"
+# brew "doctl"
+# brew "flyctl"
+# brew "cloudflared"
+
+# ── Languages (often better installed via mise on Linux servers) ─────────────
+# brew "go"
+# brew "rust"
+# brew "uv"
+# brew "pnpm"
+
+# ── Media / misc ─────────────────────────────────────────────────────────────
+# brew "ffmpeg"
+# brew "yt-dlp"
+# brew "httpie"

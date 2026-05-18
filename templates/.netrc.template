@@ -1,0 +1,7 @@
+machine api.heroku.com
+  login {{ op://Dotfiles/Heroku CLI/username }}
+  password {{ op://Dotfiles/Heroku CLI/password }}
+
+machine git.heroku.com
+  login {{ op://Dotfiles/Heroku CLI/username }}
+  password {{ op://Dotfiles/Heroku CLI/password }}

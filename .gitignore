@@ -1,0 +1,7 @@
+# Local, machine-specific files — never commit
+.DS_Store
+*.bak.*
+*.swp
+
+# gh CLI auth state (may contain tokens)
+.config/gh/hosts.yml

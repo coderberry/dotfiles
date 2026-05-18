@@ -1,0 +1,4 @@
+# Configure Bun scoped registries. Add an entry per private GitHub Packages scope.
+
+[install.scopes]
+# "@your-scope" = { token = "{{ op://Dotfiles/GitHub PAT - npm packages/credential }}", url = "https://npm.pkg.github.com" }

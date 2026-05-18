@@ -1,0 +1,121 @@
+# Brewfile.mac — Curated essentials for macOS.
+#
+# Usage:
+#   brew bundle --file=Brewfile.mac
+#
+# Philosophy: install only what you actually use. Specialty tools you
+# install from your previous setup are listed (commented) at the bottom —
+# uncomment what you still need.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Modern shell stack (drives the .zshrc)
+# ──────────────────────────────────────────────────────────────────────────────
+brew "stow"            # symlink manager (used by install.sh)
+brew "starship"        # prompt
+brew "atuin"           # SQLite shell history with full-text search
+brew "zoxide"          # smarter `cd` (z foo)
+brew "eza"             # modern `ls`
+brew "fzf"             # fuzzy finder (Ctrl+T, fzf-tab)
+brew "fnm"             # node version manager (fast)
+
+# ──────────────────────────────────────────────────────────────────────────────
+# CLI essentials
+# ──────────────────────────────────────────────────────────────────────────────
+brew "git"
+brew "git-lfs"
+brew "gh"              # GitHub CLI
+brew "ripgrep"         # rg
+brew "fd"              # better find; underpins some fzf integrations
+brew "bat"             # cat with syntax highlighting
+brew "jq"              # JSON
+brew "direnv"          # per-directory env vars
+brew "tree"
+brew "wget"
+brew "htop"
+brew "mosh"            # resilient SSH
+brew "mise"            # runtime version manager (node/python/go/etc.)
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Editor / dev workflow
+# ──────────────────────────────────────────────────────────────────────────────
+brew "neovim"
+brew "lnav"            # log viewer
+brew "gitui"           # TUI git client
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Languages / runtimes you actually use
+# ──────────────────────────────────────────────────────────────────────────────
+brew "go"
+brew "rust"
+brew "uv"              # python package/runtime manager
+brew "pnpm"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 1Password integration
+# ──────────────────────────────────────────────────────────────────────────────
+cask "1password"
+cask "1password-cli"   # `op` — used by templates/render.sh
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Terminal + keyboard (Mac-only)
+# ──────────────────────────────────────────────────────────────────────────────
+cask "ghostty"
+cask "karabiner-elements"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Fonts (just two — pick from Ghostty / your editor)
+# ──────────────────────────────────────────────────────────────────────────────
+cask "font-jetbrains-mono-nerd-font"
+cask "font-meslo-lg-nerd-font"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Optional — uncomment what you still need
+# ──────────────────────────────────────────────────────────────────────────────
+
+# ── Cloud / infra ────────────────────────────────────────────────────────────
+# brew "hashicorp/tap/terraform"
+# brew "doctl"            # DigitalOcean
+# brew "flyctl"           # Fly.io
+# brew "heroku/brew/heroku"
+# brew "cloudflared"
+# brew "ngrok"
+# cask "gcloud-cli"
+
+# ── Containers / VMs ─────────────────────────────────────────────────────────
+# brew "podman"
+# cask "orbstack"
+
+# ── Build / embedded toolchains ──────────────────────────────────────────────
+# brew "cmake"
+# brew "make"
+# brew "ninja"
+# brew "automake"
+# brew "arduino-cli"
+# brew "arm-none-eabi-gcc"
+# brew "dfu-util"
+# brew "picotool"
+# cask "gcc-arm-embedded"
+
+# ── Media / misc tools ───────────────────────────────────────────────────────
+# brew "ffmpeg"
+# brew "yt-dlp"
+# brew "imagemagick"
+# brew "asciinema"
+# brew "redis"
+# brew "mkcert"
+# brew "httpie"
+
+# ── AI / agent CLIs ──────────────────────────────────────────────────────────
+# brew "anomalyco/tap/opencode"
+# brew "gemini-cli"
+# brew "getsentry/tools/sentry-cli"
+# cask "claude-code"
+# cask "codex"
+
+# ── GUI apps ─────────────────────────────────────────────────────────────────
+# cask "arc"
+# cask "slack"
+# cask "visual-studio-code"
+# cask "jetbrains-toolbox"
+# cask "godot"
+# cask "openscad"

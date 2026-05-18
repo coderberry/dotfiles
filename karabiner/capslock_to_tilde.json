@@ -1,0 +1,38 @@
+{
+  "title": "Caps Lock → Tilde",
+  "rules": [
+    {
+      "description": "Press Caps Lock to type the tilde character (~)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "caps_lock"
+          },
+          "to": [
+            {
+              "key_code": "grave_accent_and_tilde",
+              "modifiers": ["shift"]
+            }
+          ]
+        },
+        {
+          /* Optional: Caps Lock → grave accent ( ` ) */
+          "type": "basic",
+          "from": {
+            "key_code": "caps_lock",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "grave_accent_and_tilde",
+              "modifiers": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

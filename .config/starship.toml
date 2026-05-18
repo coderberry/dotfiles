@@ -1,0 +1,18 @@
+# Starship prompt — minimal overrides, defaults are good.
+# Full reference: https://starship.rs/config/
+
+add_newline = true
+command_timeout = 1000
+
+[gcloud]
+disabled = true
+
+[aws]
+disabled = true
+
+[azure]
+disabled = true
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol   = "[✗](bold red)"

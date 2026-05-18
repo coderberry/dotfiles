@@ -1,0 +1,7 @@
+# Configure GitHub Packages auth + scopes you publish/install from.
+# Add a `@your-scope:registry=…` line per private scope.
+
+//npm.pkg.github.com/:_authToken={{ op://Dotfiles/GitHub PAT - npm packages/credential }}
+# @your-scope:registry=https://npm.pkg.github.com/
+
+//registry.npmjs.org/:_authToken={{ op://Dotfiles/npmjs.com token/credential }}

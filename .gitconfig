@@ -1,0 +1,42 @@
+# Identity (user.name / user.email) lives in ~/.gitconfig.local, not here.
+# Copy .gitconfig.local.example into place and edit before first commit.
+
+[color]
+	ui = true
+
+[core]
+	excludesfile = ~/.gitignore_global
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[rebase]
+	autosquash = true
+
+[push]
+	default = simple
+
+[diff]
+	colorMoved = zebra
+
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
+
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+
+# Machine-specific config (identity, signing keys, etc.). Gitignored.
+[include]
+	path = ~/.gitconfig.local
