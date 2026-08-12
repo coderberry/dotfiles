@@ -118,5 +118,9 @@ kp() {
 # ── Local overrides (gitignored; private secrets, machine-specific paths) ─────
 [[ -f $HOME/.zshrc.local ]] && source "$HOME/.zshrc.local"
 
-# --- secure-env function (chmod 600 for .env files) -----
-[[ -f $HOME/.zsh/functions/secure-env.zsh ]] && source "$HOME/.zsh/functions/secure-env.zsh"
+# ── Function library ──────────────────────────────────────────────────────────
+# Every *.sh in .zsh/functions/ is sourced, so dropping a new file in is enough.
+for _fn in "$DOTDIR"/.zsh/functions/*.sh(N); do
+  source "$_fn"
+done
+unset _fn

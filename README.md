@@ -76,7 +76,7 @@ Open a new shell. Zinit bootstraps itself on first launch (clones to `~/.local/s
 | ------------------------- | --------------------------------- |
 | Alias                     | `.aliases`                        |
 | Short shell function      | `.zshrc` (Functions section)      |
-| Longer shell function     | `.zsh/functions/`                 |
+| Longer shell function     | `.zsh/functions/*.sh` (auto-sourced) |
 | SSH host                  | `~/.ssh/config` as a `Host` entry |
 | Anything machine-specific | `~/.zshrc.local`                  |
 

@@ -129,13 +129,14 @@ EOF
   # ---------------------------------------------------------------------
   # Process files (dry run or apply)
   # ---------------------------------------------------------------------
-  local file
+  local file current_perms
   local count=0
   for file in "${files[@]}"; do
     [[ -z "$file" ]] && continue
     ((count++))
     if $dry_run; then
-      local current_perms
+      # Declared above the loop: in zsh, `local` on an already-declared local
+      # prints "name=value" instead of redeclaring, leaking a line per file.
       current_perms=$(stat -f "%Lp" "$file" 2>/dev/null || stat -c "%a" "$file" 2>/dev/null)
       echo "[DRY RUN] $file  (current: $current_perms -> would set: 600)"
     else
