@@ -6,7 +6,8 @@ Minimal, cross-platform (macOS-primary, Linux-aware) dotfiles managed with [GNU 
 
 | File / dir                  | What it does                                                              |
 | --------------------------- | ------------------------------------------------------------------------- |
-| `.zshrc`                    | Zinit + cherry-picked OMZ snippets, modern CLI tools, minimal aliases.    |
+| `.zshrc`                    | Zinit + cherry-picked OMZ snippets, modern CLI tools, shell functions.    |
+| `.aliases`                  | Every shell alias, grouped by domain. Sourced by `.zshrc`.                |
 | `.zprofile`                 | Login-only env: Homebrew shellenv, `BAT_THEME`.                           |
 | `.gitconfig`                | Sane defaults + aliases. Identity lives in `~/.gitconfig.local`.          |
 | `.gitconfig.local.example`  | Copy to `~/.gitconfig.local` and fill in your name/email.                 |
@@ -66,12 +67,31 @@ Open a new shell. Zinit bootstraps itself on first launch (clones to `~/.local/s
 - **Zinit** for plugin loading. Cherry-picks the handful of OMZ snippets that matter; deferred plugin loading keeps shell startup fast.
 - **Starship** for the prompt. Minimal override on top of Starship defaults.
 - **Atuin / zoxide / eza / fzf-tab / fnm** as the modern CLI baseline.
-- **Single-file `.zshrc`** — easy to scan, no `.zsh.d/` sprawl.
-- **OS detection** via `$OSTYPE` gates Mac-only bits (1Password SSH socket, pbcopy) so the same `.zshrc` works on Linux.
+- **Two shell files, not a `.zsh.d/` tree** — `.zshrc` for env, plugins, tools, and functions; `.aliases` for aliases. Still easy to scan.
+- **OS detection** via `$OSTYPE` gates Mac-only bits (1Password SSH socket, `pbcopy`). `.aliases` is sourced *after* detection, so it can gate on `$IS_MAC` / `$IS_LINUX` too.
+
+### Where a given thing belongs
+
+| Kind of config            | Goes in                           |
+| ------------------------- | --------------------------------- |
+| Alias                     | `.aliases`                        |
+| Short shell function      | `.zshrc` (Functions section)      |
+| Longer shell function     | `.zsh/functions/`                 |
+| SSH host                  | `~/.ssh/config` as a `Host` entry |
+| Anything machine-specific | `~/.zshrc.local`                  |
+
+SSH hosts are deliberately **not** aliases. A `Host` entry works for `ssh`, `scp`, `rsync`, and git remotes alike, and keeps addresses out of this repo:
+
+```
+Host myserver
+  HostName 203.0.113.10
+  User me
+  Port 2222
+```
 
 ## Local overrides (private, not committed)
 
-Four escape hatches for machine-specific config — all gitignored:
+Three escape hatches for machine-specific config. All are gitignored, and since Stow symlinks them from this repo into `$HOME`, the real files live here — keeping them out of git matters:
 
 | File                  | Sourced from        | Use for                                                  |
 | --------------------- | ------------------- | -------------------------------------------------------- |
