@@ -95,40 +95,14 @@ fi
 if (( ${+IS_MAC} )); then
   # 1Password SSH agent
   export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-  alias pbc='pbcopy'
-  alias pbp='pbpaste'
 fi
 
-# ── Linux-only ────────────────────────────────────────────────────────────────
-if (( ${+IS_LINUX} )); then
-  command -v xclip >/dev/null && alias pbc='xclip -selection clipboard'
-  command -v xclip >/dev/null && alias pbp='xclip -selection clipboard -o'
-fi
+# ── Aliases ───────────────────────────────────────────────────────────────────
+# All aliases live in .aliases (including the OS-gated clipboard ones, hence
+# sourcing after OS detection above). SSH hosts live in ~/.ssh/config.
+[[ -f $DOTDIR/.aliases ]] && source "$DOTDIR/.aliases"
 
-# ── Aliases (minimal core; add to ~/.zshrc.local as you rediscover needs) ─────
-alias cdot='cd $DOTDIR'
-alias zrefresh='exec zsh'
-alias reload='source ~/.zshrc'
-
-alias vim='nvim'
-alias v='nvim'
-
-alias gco='git checkout'
-alias gst='git status'
-alias gd='git diff'
-alias gp='git pull'
-alias gpu='git push'
-
-alias dc='docker compose'
-
-alias python='python3'
-alias pip='pip3'
-
-alias ls='eza --git --icons --group-directories-first'
-alias ll='eza -l --git --icons --group-directories-first'
-alias la='eza -la --git --icons --group-directories-first'
-alias lt='eza --tree --level=2 --git-ignore'
-
+# ── Functions ─────────────────────────────────────────────────────────────────
 # Kill the process listening on a given port:  kp 3000
 kp() {
   if [[ -z "$1" ]]; then
@@ -143,3 +117,6 @@ kp() {
 
 # ── Local overrides (gitignored; private secrets, machine-specific paths) ─────
 [[ -f $HOME/.zshrc.local ]] && source "$HOME/.zshrc.local"
+
+# --- secure-env function (chmod 600 for .env files) -----
+[[ -f $HOME/.zsh/functions/secure-env.zsh ]] && source "$HOME/.zsh/functions/secure-env.zsh"

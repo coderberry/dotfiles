@@ -1,0 +1,93 @@
+#!/bin/zsh
+#───────────────────────────────────────────────────────────────────────────────
+# .aliases — the single home for shell aliases
+#
+# Sourced from .zshrc after OS detection, so $DOTDIR, $EDITOR, $IS_MAC and
+# $IS_LINUX are all available here.
+#
+# Where things live
+#   Aliases           → this file
+#   Shell functions   → .zshrc (short ones) or .zsh/functions/*.zsh (longer)
+#   SSH hosts         → ~/.ssh/config, as `Host` entries
+#   Machine-specific  → ~/.zshrc.local (gitignored, not committed)
+#
+# Conventions
+#   - Single quotes, so $VARS resolve when the alias runs, not when it's sourced.
+#   - Group by domain, ordered roughly by how often it gets used.
+#   - Reach for a real function or ~/.ssh/config entry when it buys more than
+#     an alias would — e.g. `Host` entries also work for scp, rsync, and git.
+#───────────────────────────────────────────────────────────────────────────────
+
+# ── Dotfiles ──────────────────────────────────────────────────────────────────
+alias cdot='cd $DOTDIR'
+alias edot='$EDITOR $DOTDIR'
+alias ndot='nvim $DOTDIR'
+alias zdot='zed $DOTDIR'
+
+# `zrefresh` is the safer reload — re-sourcing .zshrc runs zinit a second time.
+alias zrefresh='exec zsh'
+alias reload='source ~/.zshrc'
+alias zr='source ~/.zshrc'
+
+# ── Editor ────────────────────────────────────────────────────────────────────
+alias vim='nvim'
+alias v='nvim'
+
+# ── Listing (eza) ─────────────────────────────────────────────────────────────
+alias ls='eza --git --icons --group-directories-first'
+alias ll='eza -l --git --icons --group-directories-first'
+alias la='eza -la --git --icons --group-directories-first'
+alias lt='eza --tree --level=2 --git-ignore'
+
+# ── Git ───────────────────────────────────────────────────────────────────────
+# The OMZP::git snippet loaded in .zshrc provides most of these already; these
+# are the handful worth pinning so they don't drift with the upstream plugin.
+alias gco='git checkout'
+alias gst='git status'
+alias gd='git diff'
+alias gp='git pull'
+alias gpu='git push'
+
+# ── Docker ────────────────────────────────────────────────────────────────────
+alias dc='docker compose'
+
+# ── Python ────────────────────────────────────────────────────────────────────
+alias python='python3'
+alias pip='pip3'
+alias pe='pyenv exec'
+alias pm='python manage.py'          # Django
+alias vba='source .venv/bin/activate'
+
+alias pir='pip install -r requirements.txt'
+alias pii='pip install -r requirements.in'
+alias pfz='pip freeze > requirements.txt'
+
+alias uvp='uv run python'
+
+# ── Node / JS ─────────────────────────────────────────────────────────────────
+alias wrangler='npx wrangler'
+
+# ── tmux ──────────────────────────────────────────────────────────────────────
+alias tmux='tmux -2'                 # force 256-colour
+alias t='tmux new-session -A -s'     # attach if it exists, else create: t work
+
+# ── Network & system ──────────────────────────────────────────────────────────
+alias myip='curl -s ifconfig.co/x-real-ip'
+alias brew-prune='(cd "$(brew --repo)" && git prune && git gc)'
+alias update-claude='brew upgrade claude-code'
+
+# ── Clipboard (OS-gated) ──────────────────────────────────────────────────────
+if (( ${+IS_MAC} )); then
+  alias pbc='pbcopy'
+  alias pbp='pbpaste'
+elif (( ${+IS_LINUX} )); then
+  if command -v xclip >/dev/null; then
+    alias pbc='xclip -selection clipboard'
+    alias pbp='xclip -selection clipboard -o'
+  fi
+fi
+
+# ── SSH ───────────────────────────────────────────────────────────────────────
+# Hosts are defined in ~/.ssh/config, not here: `ssh giraffe`, `ssh starship`,
+# `ssh gmg-metis`, `ssh tank`. That form also works for scp/rsync/git remotes,
+# and keeps addresses out of this repo.

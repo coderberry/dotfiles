@@ -2,6 +2,8 @@
 # Stow treats this as a list of regex patterns, one per line.
 \.git
 \.gitignore
+# Sourced directly from .zshrc via $DOTDIR; no ~/.aliases symlink needed.
+\.aliases
 README\.md
 install\.sh
 brew\.txt

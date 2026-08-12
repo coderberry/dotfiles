@@ -29,7 +29,7 @@ fi
 
 # ── 2. Back up any pre-existing real files that Stow would clobber ────────────
 ts=$(date +%Y%m%d-%H%M%S)
-for f in .zshrc .zprofile .gitconfig .gitignore_global; do
+for f in .zshrc .zshrc.local .zprofile .gitconfig .gitconfig.local .gitignore_global; do
   target="$HOME/$f"
   if [[ -e $target && ! -L $target ]]; then
     echo "→ Backing up $target → $target.bak.$ts"
@@ -53,4 +53,10 @@ cat <<EOF
      under Complex Modifications if you want Caps Lock → ~.
   4. Drop any private/machine-specific config into ~/.zshrc.local
      (gitignored; sourced at end of .zshrc).
+  5. Setup and install Node:
+     ```
+     fnm install 22
+     fnm default 22
+     node -v
+     ```
 EOF

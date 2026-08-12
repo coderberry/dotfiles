@@ -5,3 +5,9 @@
 
 # gh CLI auth state (may contain tokens)
 .config/gh/hosts.yml
+
+# Local overrides — stowed into $HOME, so the real files live here.
+# May hold secrets, identities, and machine-specific paths.
+.zshrc.local
+.zprofile.local
+.gitconfig.local

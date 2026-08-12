@@ -1,0 +1,16 @@
+# Copy to ~/.gitconfig.local, then edit. This file is gitignored.
+#
+#   cp .gitconfig.local.example ~/.gitconfig.local
+#   $EDITOR ~/.gitconfig.local
+
+[user]
+	name = Eric Berry
+	email = eric@berry.sh
+	# signingkey = ...        # if you sign commits
+
+# [commit]
+#	gpgsign = true            # uncomment to sign every commit
+
+# Per-directory identity overrides (useful for work vs personal):
+# [includeIf "gitdir:~/Code/work/"]
+#	path = ~/.gitconfig.work

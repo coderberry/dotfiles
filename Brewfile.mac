@@ -30,10 +30,13 @@ brew "bat"             # cat with syntax highlighting
 brew "jq"              # JSON
 brew "direnv"          # per-directory env vars
 brew "tree"
+brew "oven-sh/bun/bun"
 brew "wget"
 brew "htop"
 brew "mosh"            # resilient SSH
 brew "mise"            # runtime version manager (node/python/go/etc.)
+brew "ngrok"
+brew "glow"            # Markdown rendering in shell
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Editor / dev workflow
@@ -48,6 +51,7 @@ brew "gitui"           # TUI git client
 brew "go"
 brew "rust"
 brew "uv"              # python package/runtime manager
+# brew "nvm"
 brew "pnpm"
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -119,3 +123,4 @@ cask "font-meslo-lg-nerd-font"
 # cask "jetbrains-toolbox"
 # cask "godot"
 # cask "openscad"
+# Install portkiller using `brew install --cask productdevbook/tap/portkiller`
